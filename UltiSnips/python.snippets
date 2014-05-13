@@ -19,6 +19,38 @@ endsnippet
 snippet for "for loop" b
 for ${1:item} in ${2:iterable}:
 	${3:pass}
+snippet args "Parse command line arguments" b
+parser = argparse.ArgumentParser(description='${1:What the program does}')
+parser.add_argument('${2:--flag}'${3})
+args = parser.parse_args()
+endsnippet
+
+snippet arg "Add a command line argument" b
+parser.add_argument('${1:--${2:flag}}'${3:, help='${4:What the argument does}'${5}})
+endsnippet
+
+# Full command-line script template.
+#
+# TODO: It would be nice to include other snippets here instead of duplicating
+# their content. Is there a good way to do that?
+snippet cmd "Command line utility" b
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# Use the -h command line option for usage information.
+
+import argparse
+
+def parse_args():
+   parser = argparse.ArgumentParser(description='${1:What the program does}')
+   return parser.parse_args()
+
+def main():
+   args = parse_args()
+	${0:print "Hello World"}
+
+if __name__ == '__main__':
+   main()
 endsnippet
 
 ##########
